@@ -1,8 +1,8 @@
 
 
-# AI Application Workflow
+# Automated Document Processing and Markdown Generation
 
-This project outlines the architecture and workflow of an AI application that processes and standardizes data from various sources (PDFs, web scraping, and enterprise services) and stores it in an AWS S3 bucket. The application is built using a combination of Python libraries, FastAPI for the backend, and Streamlit for the frontend.
+A comprehensive solution for extracting, processing, and standardizing data from documents(PDF files) and web sources using both open-source and enterprise tools. The application leverages FastAPI for backend processing and Streamlit for an intuitive user interface, deployed on Google Cloud Run.
 
 ## Workflow Diagram
 
@@ -26,8 +26,6 @@ Below is the workflow diagram for the AI Application:
 7. **Google Cloud Run**: Used for Deploying FastAPI applications
 8. **Streamlit In-builtDeployment**: Used for Deploying Streamlit application for UI/UX. 
 
----
-
 ## Components
 
 1. **User**: The end-user interacts with the application via the Streamlit frontend.
@@ -43,6 +41,27 @@ Below is the workflow diagram for the AI Application:
 6. **AWS S3 Bucket**: Used for storing processed data.
 
 ---
+## Project Structure
+```bash
+├── .devcontainer/ # Development container configuration
+├── .streamlit/ # Streamlit configuration files
+├── api/ # FastAPI backend services
+├── frontend/ # Streamlit frontend application
+├── notebooks/ # Development and testing notebooks
+├── .dockerignore # Docker ignore rules
+├── .gitignore # Git ignore rules
+├── Azure_Document_Intelligence.py # Azure AI document processing for  enterprise pdf extraction
+├── Cloud_Run.md # Cloud deployment instructions
+├── Dockerfile # Main application Dockerfile
+├── EnterpriseWebScrap.py # Enterprise web scraping module
+├── OSWebScrap.py # Open-source web scraping module
+├── README.md # Project documentation
+├── ai_application_workflow.png # Architecture diagram
+├── docker-compose.yml # Multi-container Docker setup
+├── docklingextraction.py # Markdown Generator for pdf
+├── open_source_parsing.py # pymupdf and camelot for open source pdf extraction
+└── requirements.txt # Python dependencies
+```
 
 ## Workflow Steps
 
@@ -64,6 +83,8 @@ Below is the workflow diagram for the AI Application:
 - [Diagrams](https://diagrams.mingrammer.com/) library for generating the workflow diagram.
 - AWS account with S3 bucket access.
 - Streamlit and FastAPI installed for frontend and backend development.
+- Install [Google Cloud SDK](https://cloud.google.com/sdk/docs/install)
+- Install [Docker](https://docs.docker.com/get-docker/) 
 
 ---
 ## Installation
@@ -72,16 +93,19 @@ Clone the repository:
 
    ```bash
    git clone https://github.com/yourusername/ai-application-workflow.git
-   cd ai-application-workflow
+   cd BIGDATA_INCLASS_PROJ1
    ```
    Create a .env file and add the required credentials:
 
    ```bash
    AWS_ACCESS_KEY_ID=your_aws_access_key
    AWS_SECRET_ACCESS_KEY=your_aws_secret_key
+   AWS_REGION=your_aws_region
    AZURE_DOCUMENT_INTELLIGENCE_KEY=your_azure_key
+   AZURE_FORM_RECOGNIZER_KEY=your_azure_form_intelligence
    APIFY_TOKEN=your_apify_token
-   ADOBE_API_KEY=your_adobe_api_key
+   ADOBE_API_ID=your_adobe_api_key
+   ADOBE_API_Secret= adobe_api_secret 
    ```
    
    Build and run the application using Docker Compose:
@@ -104,18 +128,31 @@ Clone the repository:
 
 1. Run the FastAPI backend:
    ```bash
+   cd api
+   python -m venv venv
+   pip install -r requirements.txt
+   venv/Scripts/activate
    uvicorn backend:app --reload
    ```
+2.Open your browser and navigate to `http://localhost:8080` to interact with the application for Backend.
 
-2. Run the Streamlit frontend:
+3. Run the Streamlit frontend:
    ```bash
+   cd frontend
+   python -m venv venv
+   pip install -r requirements.txt
+   venv/Scripts/activate
    streamlit run frontend.py
    ```
+4.Open your browser and navigate to `http://localhost:8501` to interact with the application for Streamlit app.Run the streamlit after running the fastapi localhost 
 
-3. Open your browser and navigate to `http://localhost:8501` to interact with the application.
 
 ---
+**Deployed Application:**
+- FastAPI Backend: https://fastapi-streamlit-974490277552.us-central1.run.app/
+- Streamlit Frontend: https://streamlit-app-974490277552.us-central1.run.app/
 
+More details on the cloud deployment process will be explained in the CloudRun.md in the root folder
 
 
 ## Contributing
