@@ -92,7 +92,7 @@ Below is the workflow diagram for the AI Application:
 Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/ai-application-workflow.git
+   git clone https://github.com/your-username/BigData_InClass_Proj1.git
    cd BIGDATA_INCLASS_PROJ1
    ```
    Create a .env file and add the required credentials:
