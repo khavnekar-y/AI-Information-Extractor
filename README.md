@@ -71,6 +71,7 @@ Below is the workflow diagram for the AI Application:
    - **PyPDF2 / pdfplumber** for PDF extraction.
    - **BeautifulSoup / Scrapy** for web scraping.
    - **Microsoft Document Intelligence** for enterprise document processing.
+   - **Apify** for enterprise web processing of documents.
 4. The extracted data is standardized using **Docling** and **MarkItDown**.
 5. The processed data is stored in an **AWS S3 Bucket**.
 6. The **Frontend** retrieves the processed data from the **S3 Bucket** and displays it to the **User**.
